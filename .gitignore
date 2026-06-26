@@ -17,3 +17,5 @@ mcl_milyes_logs.json
 rapport_projet.json
 create-zip.sh
 projects/
+index.html
+mcl_batch_deploy.py
