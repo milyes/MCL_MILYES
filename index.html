@@ -171,6 +171,19 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:48
 .sc-btn:hover{border-color:var(--gb);color:var(--gb)}
 .sc-btn.active{background:var(--gd);color:var(--gb);border-color:rgba(0,204,85,.3)}
 .sc.hidden{display:none!important}
+
+.ag-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px}
+.ag-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;opacity:0;transform:translateY(16px);transition:all .4s}
+.ag-card.sh{opacity:1;transform:translateY(0)}
+.ag-val{font-size:2rem;font-weight:800;color:var(--gb);font-family:'JetBrains Mono',monospace}
+.ag-lbl{font-size:.85rem;color:var(--f2);font-weight:600;margin-top:2px}
+.ag-bar-bg{width:100%;height:6px;background:var(--bg2);border-radius:100px;margin-top:10px;overflow:hidden}
+.ag-bar{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--gb),var(--gold));width:0;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+.ag-sub{font-size:.75rem;color:var(--muted);margin-top:8px;line-height:1.4}
+.tl-mini{display:flex;gap:0;padding-left:20px;border-left:2px solid var(--border);flex-direction:column}
+.tlm-item{padding:12px 0 12px 16px;border-left:2px solid var(--border);margin-left:-1px}
+.tlm-date{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--gb);font-weight:600}
+.tlm-info{font-size:.82rem;color:var(--f2)}
 </style>
 </head>
 <body>
@@ -188,7 +201,9 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:48
 <li><a href="#tests">Tests</a></li>
 <li><a href="#cib">CIB</a></li>
 <li><a href="#nsp">NSP</a></li>
+<li><a href="#analytics">Analytics</a></li>
 <li><a href="#sites">Sites</a></li>
+<li><a href="#analytics">Analytics</a></li>
 <li><a href="#sites">Sites</a></li>
 <li><a href="#road">Roadmap</a></li>
 </ul>
@@ -360,7 +375,65 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:48
 </section>
 
 
-<section id="sites">
+
+<section id="analytics">
+<div class="stag"><i class="fas fa-chart-bar"></i> Intelligence du marche</div>
+<h2 class="sti">Ce que les donnees disent</h2>
+<p class="sd">Analyse des 16 projets generes. Donnees reelles extraites de mcl_milyes_logs.json.</p>
+<div class="ag-grid">
+<div class="ag-card">
+<div class="ag-val">37.5%</div>
+<div class="ag-lbl">Marketing digital</div>
+<div class="ag-bar-bg"><div class="ag-bar" data-w="37.5" style="width:0"></div></div>
+<div class="ag-sub">6 projets — segment dominant</div>
+</div>
+<div class="ag-card">
+<div class="ag-val">18.8%</div>
+<div class="ag-lbl">E-commerce / Mode</div>
+<div class="ag-bar-bg"><div class="ag-bar" data-w="18.8" style="width:0"></div></div>
+<div class="ag-sub">3 projets — vetements, artisanat, goodies</div>
+</div>
+<div class="ag-card">
+<div class="ag-val">18.8%</div>
+<div class="ag-lbl">Services generaux</div>
+<div class="ag-bar-bg"><div class="ag-bar" data-w="18.8" style="width:0"></div></div>
+<div class="ag-sub">3 projets — divers</div>
+</div>
+<div class="ag-card">
+<div class="ag-val">12.5%</div>
+<div class="ag-lbl">Food / Livraison</div>
+<div class="ag-bar-bg"><div class="ag-bar" data-w="12.5" style="width:0"></div></div>
+<div class="ag-sub">2 projets — repas, pizzas, cuisin</div>
+</div>
+<div class="ag-card">
+<div class="ag-val">12.5%</div>
+<div class="ag-lbl">Tech / IA</div>
+<div class="ag-bar-bg"><div class="ag-bar" data-w="12.5" style="width:0"></div></div>
+<div class="ag-sub">2 projets — ollama, traducteur</div>
+</div>
+</div>
+<div class="ag-insight" style="margin-top:32px;padding:28px;background:var(--card);border:1px solid var(--border);border-radius:16px;border-left:3px solid var(--gb)">
+<div style="font-weight:700;color:var(--gb);margin-bottom:8px;font-size:.95rem">Insight principal</div>
+<div style="color:var(--f2);font-size:.9rem;line-height:1.7">Le segment "marketing digital" represente 37.5% de la demande. Ce n'est pas une coincidence : la forge elle-meme est un produit de marketing digital. L'utilisateur teste la forge avec l'idee meme de la forge. C'est un meta-signal de validation de marche.</div>
+</div>
+<div class="ag-timeline" style="margin-top:28px">
+<h3 style="font-size:.95rem;font-weight:700;margin-bottom:20px">Velocite de creation</h3>
+<div class="tl-mini">
+<div class="tlm-item">
+<div class="tlm-date">18 Juin</div>
+<div class="tlm-info">3 projets en 6 minutes — premiere session</div>
+</div>
+<div class="tlm-item">
+<div class="tlm-date">22 Juin matin</div>
+<div class="tlm-info">9 projets en 8 heures — session intensive</div>
+</div>
+<div class="tlm-item">
+<div class="tlm-date">22 Juin apres-midi</div>
+<div class="tlm-info">6 minutes entre 2 projets — pic de velocite</div>
+</div>
+</div>
+</div>
+</section><section id="sites">
 <div class="stag"><i class="fas fa-globe"></i> Sites generes</div>
 <h2 class="sti">16 projets crees par la forge</h2>
 <p class="sd">Chaque site est genere en quelques secondes. Voici les 16 projets reels du journal MCL_MILYES.</p>
@@ -460,7 +533,65 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:48
 </div>
 </div>
 </section>
-<section id="sites">
+
+<section id="analytics">
+<div class="stag"><i class="fas fa-chart-bar"></i> Intelligence du marche</div>
+<h2 class="sti">Ce que les donnees disent</h2>
+<p class="sd">Analyse des 16 projets generes. Donnees reelles extraites de mcl_milyes_logs.json.</p>
+<div class="ag-grid">
+<div class="ag-card">
+<div class="ag-val">37.5%</div>
+<div class="ag-lbl">Marketing digital</div>
+<div class="ag-bar-bg"><div class="ag-bar" data-w="37.5" style="width:0"></div></div>
+<div class="ag-sub">6 projets — segment dominant</div>
+</div>
+<div class="ag-card">
+<div class="ag-val">18.8%</div>
+<div class="ag-lbl">E-commerce / Mode</div>
+<div class="ag-bar-bg"><div class="ag-bar" data-w="18.8" style="width:0"></div></div>
+<div class="ag-sub">3 projets — vetements, artisanat, goodies</div>
+</div>
+<div class="ag-card">
+<div class="ag-val">18.8%</div>
+<div class="ag-lbl">Services generaux</div>
+<div class="ag-bar-bg"><div class="ag-bar" data-w="18.8" style="width:0"></div></div>
+<div class="ag-sub">3 projets — divers</div>
+</div>
+<div class="ag-card">
+<div class="ag-val">12.5%</div>
+<div class="ag-lbl">Food / Livraison</div>
+<div class="ag-bar-bg"><div class="ag-bar" data-w="12.5" style="width:0"></div></div>
+<div class="ag-sub">2 projets — repas, pizzas, cuisin</div>
+</div>
+<div class="ag-card">
+<div class="ag-val">12.5%</div>
+<div class="ag-lbl">Tech / IA</div>
+<div class="ag-bar-bg"><div class="ag-bar" data-w="12.5" style="width:0"></div></div>
+<div class="ag-sub">2 projets — ollama, traducteur</div>
+</div>
+</div>
+<div class="ag-insight" style="margin-top:32px;padding:28px;background:var(--card);border:1px solid var(--border);border-radius:16px;border-left:3px solid var(--gb)">
+<div style="font-weight:700;color:var(--gb);margin-bottom:8px;font-size:.95rem">Insight principal</div>
+<div style="color:var(--f2);font-size:.9rem;line-height:1.7">Le segment "marketing digital" represente 37.5% de la demande. Ce n'est pas une coincidence : la forge elle-meme est un produit de marketing digital. L'utilisateur teste la forge avec l'idee meme de la forge. C'est un meta-signal de validation de marche.</div>
+</div>
+<div class="ag-timeline" style="margin-top:28px">
+<h3 style="font-size:.95rem;font-weight:700;margin-bottom:20px">Velocite de creation</h3>
+<div class="tl-mini">
+<div class="tlm-item">
+<div class="tlm-date">18 Juin</div>
+<div class="tlm-info">3 projets en 6 minutes — premiere session</div>
+</div>
+<div class="tlm-item">
+<div class="tlm-date">22 Juin matin</div>
+<div class="tlm-info">9 projets en 8 heures — session intensive</div>
+</div>
+<div class="tlm-item">
+<div class="tlm-date">22 Juin apres-midi</div>
+<div class="tlm-info">6 minutes entre 2 projets — pic de velocite</div>
+</div>
+</div>
+</div>
+</section><section id="sites">
 <div class="stag"><i class="fas fa-globe"></i> Sites generes</div>
 <h2 class="sti">16 projets crees par la forge</h2>
 <p class="sd">Chaque site est genere en quelques secondes. Voici les 16 projets reels du journal MCL_MILYES.</p>
@@ -603,5 +734,9 @@ else{c.classList.add("hidden");c.classList.remove("sh")}
 });
 });
 });
+</script><script>
+var ab=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll(".ag-bar").forEach(function(b){b.style.width=b.dataset.w+"%"});ab.unobserve(e.target)}})},{threshold:.3});
+document.querySelectorAll(".ag-card,.tlm-item,.ag-insight").forEach(function(el,i){var r=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.style.transitionDelay=i*.1+"s";e.target.classList.add("sh");r.unobserve(e.target)}})},{threshold:.1});
+r.observe(el)});
 </script></body>
 </html>
