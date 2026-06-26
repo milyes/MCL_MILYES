@@ -9,6 +9,7 @@ from .analyzer import detect_category
 from .generator import generate_html
 from .logo import generate_logo_svg
 from .logger import save_log
+from .error_handler import get_handler
 
 async def create_startup(idea: str, use_ollama: bool = False, start_server: bool = False) -> dict:
     ts = datetime.now().strftime("%Y%m%d_%H%M")
@@ -29,13 +30,18 @@ async def create_startup(idea: str, use_ollama: bool = False, start_server: bool
     await asyncio.sleep(0.2)
 
     print(f"{Colors.YELLOW}  [2/4] Generation site{Colors.RESET}", end="")
-    html, src = generate_html(idea, cat, use_ollama)
+    html, src = get_handler().safe_execute("generator", generate_html, idea, cat, use_ollama)
+    if html is None:
+        print(f"{Colors.RED}  Generation echouee, fallback template{Colors.RESET}")
+        html, src = generate_html(idea, cat, False)
     sf.write_text(html, encoding="utf-8")
     print(f" -> {src} ({len(html)} octets)")
     await asyncio.sleep(0.2)
 
     print(f"{Colors.YELLOW}  [3/4] Logo{Colors.RESET}", end="")
-    lok = generate_logo_svg(idea, logof)
+    lok = get_handler().safe_execute("logo", generate_logo_svg, idea, logof)
+    if not lok:
+        print(f"{Colors.YELLOW}  Logo: echec, continuation sans logo{Colors.RESET}")
     print(f" -> {'OK' if lok else 'ECHEC'}")
     await asyncio.sleep(0.2)
 

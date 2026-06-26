@@ -5,6 +5,7 @@ from datetime import datetime
 from typing import Optional, Tuple
 from .config import OLLAMA_URL, OLLAMA_MODEL, OLLAMA_TIMEOUT, VERSION
 from .analyzer import get_category_data
+from . import cib
 
 def generate_html(idea: str, category: str, use_ollama: bool = False) -> Tuple[str, str]:
     idea = idea.replace("<", "&lt;").replace(">", "&gt;")
@@ -35,6 +36,7 @@ def _ollama(idea: str) -> Optional[str]:
     return None
 
 def _template(idea: str, category: str) -> str:
+    cib_section = cib.generate_payment_form(idea, "ORD_" + idea[:8].upper(), "5000")
     cd = get_category_data(category)
     cards = ""
     for t, d in cd["cards"]:
