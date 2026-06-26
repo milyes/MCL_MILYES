@@ -1,0 +1,11 @@
+VERSION = "0.2.0-alpha"
+PRODUCT = "NSP-SIG-MCLDZ"
+DATA_FILE = "mcl_milyes_logs.json"
+PROJECTS_DIR = "projects"
+MAX_IDEA_LENGTH = 500
+SAFE_FILENAME_RE = r"[^a-zA-Z0-9_\-\s]"
+OLLAMA_URL = "http://localhost:11434/api/generate"
+OLLAMA_MODEL = "llama3"
+OLLAMA_TIMEOUT = 60
+LEADS_PORT = 8080
+LEADS_MAX_BODY = 10000

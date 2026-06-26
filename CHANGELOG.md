@@ -1,26 +1,43 @@
 # Changelog NSP-SIG-MCLDZ
 
+## [0.2.0-alpha] - 2024
+
+### Ajoute
+- Decomposition en modules (src/mcldz/)
+  - config.py : configuration centralisee
+  - colors.py : couleurs terminal
+  - ideas.py : idees et categories
+  - security.py : sanitisation + validation telephone
+  - analyzer.py : detection categorie + extraction mots-cles
+  - generator.py : generation HTML (ollama + template)
+  - logo.py : generation logo SVG
+  - server.py : serveur leads asyncio
+  - forge.py : orchestrateur
+  - cib.py : formulaire CIB/Edahabia (premier jet)
+- 48 tests unitaires (security/analyzer/generator/logger/logo/cib)
+- Script run_tests.sh
+- validate_phone() : validation numeros algeriens
+
+### Change
+- AI_AUTO.py reduit a 40 lignes (CLI mince)
+- Toute la logique dans src/mcldz/
+
+### Securite
+- Validation format telephone algerien (05xx/06xx/07xx)
+- Tests XSS sur le template
+
 ## [0.1.0-alpha] - 2024
 
 ### Ajoute
-- Refactorisation complete NSP-SIG-MCLDZ
-- Detection categorie par mots-cles
-- 5 templates adaptes (food/tech/service/ecom/immobilier)
-- Logo SVG genere localement
-- Mini serveur leads asyncio
+- Refactorisation initiale
+- 5 categories adaptees
+- Logo SVG local
+- Mini serveur leads
 - Sanitisation inputs
-- Rapport projet honnete
-- .gitignore + CHANGELOG + docs
+- .gitignore + docs
 
 ### Supprime
-- IA_AUTO_UPDATE.py (execution code distant non souverain)
+- IA_AUTO_UPDATE.py
 - AI_AUTO_distante.py
-- Appel Pollinations.ai
+- Pollinations.ai
 - Fausse revendication CIB
-- Classe Agent factice
-
-### Securite
-- 100% stdlib, zero dependance
-- Zero appel reseau etranger
-- Inputs sanitises
-- Leads exclus du git

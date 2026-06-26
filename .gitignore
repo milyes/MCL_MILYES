@@ -11,5 +11,9 @@ projects/*/leads.json
 dist/
 build/
 *.old
-setup.py
+setup_v*.py
+run_tests.sh
 mcl_milyes_logs.json
+rapport_projet.json
+create-zip.sh
+projects/
