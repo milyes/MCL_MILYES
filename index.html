@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSP-SIG-MCLDZ v0.2.0-alpha</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--bg:#060a06;--bg2:#0c120c;--card:#101810;--border:#1a2a1a;--b2:#243424;--fg:#e8ece8;--f2:#b8c0b8;--m:#607060;--g:#009944;--gb:#00cc55;--gd:rgba(0,153,68,.12);--gg:rgba(0,204,85,.2);--r:#D21034;--rd:rgba(210,16,52,.12);--w:#f0f4f0;--gold:#d4a030}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--g) var(--bg)}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--fg);overflow-x:hidden;line-height:1.6}
+.bg-g{position:fixed;inset:0;z-index:0;pointer-events:none;
+background-image:linear-gradient(rgba(0,153,68,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,153,68,.025) 1px,transparent 1px);background-size:64px 64px}
+.bl{position:fixed;border-radius:50%;filter:blur(150px);pointer-events:none;z-index:0;animation:dr 22s ease-in-out infinite}
+.bl.a{width:700px;height:700px;background:rgba(0,153,68,.1);top:-300px;left:-200px}
+.bl.b{width:500px;height:500px;background:rgba(210,16,52,.06);bottom:-200px;right:-150px;animation-delay:-8s}
+@keyframes dr{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(50px,-40px) scale(1.06)}66%{transform:translate(-30px,50px) scale(.94)}}
+#pt{position:fixed;inset:0;z-index:0;pointer-events:none}
+.fs{position:fixed;top:0;left:0;right:0;height:3px;z-index:200;display:flex}
+.fs span{flex:1}.fg{background:var(--g)}.fw{background:#e8ece8}.fr{background:var(--r)}
+nav{position:fixed;top:3px;left:0;right:0;z-index:100;
+backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+background:rgba(6,10,6,.75);border-bottom:1px solid transparent;transition:all .4s}
+nav.sc{border-bottom-color:var(--border);box-shadow:0 4px 40px rgba(0,0,0,.5)}
+.ni{max-width:1200px;margin:0 auto;padding:0 28px;height:58px;display:flex;align-items:center;justify-content:space-between}
+.nl{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.1rem;text-decoration:none;color:var(--fg)}
+.lb{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.lb .g{position:absolute;inset:0;background:var(--g)}.lb .w{position:absolute;top:0;left:0;right:0;height:50%;background:#e8ece8}.lb .r{position:absolute;bottom:0;right:0;width:50%;height:50%;background:var(--r)}
+.lb .t{position:relative;z-index:1;font-size:.65rem;font-weight:900;color:var(--bg);text-shadow:0 0 4px rgba(0,0,0,.5)}
+.nk{display:flex;gap:24px;list-style:none}
+.nk a{color:var(--m);text-decoration:none;font-size:.8rem;font-weight:500;transition:color .25s;position:relative}
+.nk a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--g);transition:width .3s}
+.nk a:hover{color:var(--fg)}.nk a:hover::after{width:100%}
+.nc{padding:7px 18px;background:var(--g);color:#fff;border:none;border-radius:8px;font-family:inherit;font-weight:700;font-size:.78rem;text-decoration:none;transition:all .3s}
+.nc:hover{transform:translateY(-1px);box-shadow:0 4px 20px var(--gg)}
+.mt{display:none;background:none;border:none;color:var(--fg);font-size:1.2rem;cursor:pointer}
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:120px 28px 100px}
+.hc{text-align:center;max-width:860px}
+.hf{display:flex;gap:4px;justify-content:center;margin-bottom:28px;animation:ri .7s ease both}
+.hf span{width:48px;height:6px;border-radius:3px}
+.hg{background:var(--g)}.hw{background:#e0e4e0}.hr{background:var(--r)}
+.hb{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;background:var(--gd);border:1px solid rgba(0,153,68,.2);border-radius:100px;font-size:.75rem;font-weight:600;color:var(--gb);margin-bottom:28px;animation:ri .7s ease .1s both}
+.pd{width:6px;height:6px;background:var(--gb);border-radius:50%;animation:pu 2s ease-in-out infinite}
+@keyframes pu{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(2)}}
+@keyframes ri{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.hero h1{font-size:clamp(2.6rem,7vw,5rem);font-weight:900;line-height:1.04;letter-spacing:-.04em;margin-bottom:24px;animation:ri .7s ease .2s both}
+.hero h1 .gr{background:linear-gradient(135deg,var(--gb) 0%,#40e080 40%,var(--w) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero h1 .rd{color:var(--r);-webkit-text-fill-color:var(--r)}
+.hs{font-size:1.1rem;color:var(--m);max-width:620px;margin:0 auto 36px;line-height:1.75;animation:ri .7s ease .3s both}
+.hb2{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:ri .7s ease .4s both}
+.bp{padding:14px 32px;background:var(--g);color:#fff;border:none;border-radius:12px;font-family:inherit;font-weight:700;font-size:.92rem;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.bp:hover{transform:translateY(-2px);box-shadow:0 8px 32px var(--gg)}
+.bs{padding:14px 32px;background:transparent;color:var(--fg);border:1px solid var(--b2);border-radius:12px;font-family:inherit;font-weight:600;font-size:.92rem;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.bs:hover{border-color:var(--m);background:var(--bg2)}
+.sb{position:relative;z-index:1;max-width:960px;margin:-44px auto 0;padding:0 28px}
+.sg{display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);border:1px solid var(--border);border-radius:18px;padding:30px;gap:14px}
+.st{text-align:center}
+.sv{font-size:2rem;font-weight:800;color:var(--gb);font-family:'JetBrains Mono',monospace}
+.sl{font-size:.72rem;color:var(--m);margin-top:4px;font-weight:500}
+section{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:110px 28px}
+.stag{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;color:var(--gb);text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px}
+.sti{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;letter-spacing:-.03em;margin-bottom:14px;line-height:1.12}
+.sd{color:var(--m);font-size:1rem;max-width:580px;line-height:1.75;margin-bottom:48px}
+.fg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.fc{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 24px;transition:all .4s;position:relative;overflow:hidden;opacity:0;transform:translateY(20px)}
+.fc.sh{opacity:1;transform:translateY(0)}
+.fc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--g),var(--r));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.fc:hover::before{transform:scaleX(1)}
+.fc:hover{border-color:rgba(0,153,68,.25);transform:translateY(-4px)!important;box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.fi{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:18px}
+.fi.g{background:var(--gd);color:var(--gb)}.fi.r{background:var(--rd);color:var(--r)}.fi.w{background:rgba(240,244,240,.08);color:var(--w)}
+.fc h3{font-size:1rem;font-weight:700;margin-bottom:8px}
+.fc p{color:var(--m);font-size:.84rem;line-height:1.6}
+.tree{font-family:'JetBrains Mono',monospace;font-size:.76rem;line-height:2;color:var(--f2);background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px 32px;overflow-x:auto}
+.tree .d{color:var(--gb);font-weight:600}
+.tree .py{color:var(--gold)}
+.tree .md{color:#6ec8f0}
+.tree .cm{color:var(--m)}
+.tree .ts{color:var(--r)}
+.tb{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.tc{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;text-align:center;opacity:0;transform:translateY(16px);transition:all .4s}
+.tc.sh{opacity:1;transform:translateY(0)}
+.tc .tv{font-size:1.8rem;font-weight:800;color:var(--gb);font-family:'JetBrains Mono',monospace}
+.tc .tl{font-size:.82rem;color:var(--f2);margin-top:6px;font-weight:600}
+.tc .tx{font-size:.7rem;color:var(--m);margin-top:2px}
+.cibd{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:40px;text-align:center}
+.cibc{display:flex;gap:16px;justify-content:center;margin:24px 0}
+.cibo{padding:18px 32px;border-radius:12px;border:2px solid var(--b2);font-weight:700;font-size:1.1rem;cursor:pointer;transition:all .3s;user-select:none}
+.cibo.ac{border-color:var(--gb);background:var(--gd)}
+.cibo.c1{color:#0066cc}.cibo.c2{color:#ff6600}
+.cibf{max-width:400px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.cibi{width:100%;padding:14px;border-radius:8px;border:1px solid var(--b2);background:var(--bg2);color:var(--fg);font-family:inherit;font-size:.95rem;box-sizing:border-box}
+.cibi:focus{outline:none;border-color:var(--gb)}
+.cibr{display:flex;gap:12px}.cibr .cibi{flex:1}
+.cibb{padding:14px;background:var(--g);color:#fff;border:none;border-radius:10px;font-family:inherit;font-weight:700;font-size:1rem;cursor:pointer;transition:all .3s}
+.cibb:hover{box-shadow:0 4px 20px var(--gg)}
+.cibb:disabled{background:var(--b2);color:var(--m);cursor:default;box-shadow:none}
+.cibn{font-size:.72rem;color:var(--m);margin-top:12px}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cc{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px}
+.cr{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}
+.cr:last-child{border-bottom:none}
+.cl{font-size:.88rem;color:var(--f2)}
+.cs{font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:6px}
+.cs.ok{background:var(--gd);color:var(--gb)}
+.cs.no{background:var(--rd);color:var(--r)}
+.cs.pa{background:rgba(212,160,48,.1);color:var(--gold)}
+.tl{position:relative;padding-left:44px}
+.tl::before{content:'';position:absolute;left:16px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--g),var(--gold),transparent)}
+.ti{position:relative;margin-bottom:40px;opacity:0;transform:translateX(-20px);transition:all .5s}
+.ti.vi{opacity:1;transform:translateX(0)}
+.ti::before{content:'';position:absolute;left:-36px;top:6px;width:12px;height:12px;background:var(--g);border-radius:50%;border:3px solid var(--bg);box-shadow:0 0 12px var(--gg)}
+.tt{display:inline-block;padding:2px 10px;border-radius:6px;font-size:.7rem;font-weight:700;margin-bottom:8px}
+.tt.dn{background:var(--gd);color:var(--gb)}
+.tt.nx{background:rgba(212,160,48,.1);color:var(--gold)}
+.tt.lt{background:rgba(255,255,255,.05);color:var(--m)}
+.ti h3{font-size:1rem;font-weight:700;margin-bottom:6px}
+.ti p{color:var(--m);font-size:.86rem;line-height:1.6}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:48px 28px}
+.fi2{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.fc2{color:var(--m);font-size:.85rem}
+.fl{display:flex;gap:20px}
+.fl a{color:var(--m);font-size:1.15rem;transition:color .25s;text-decoration:none}
+.fl a:hover{color:var(--gb)}
+.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--card);border:1px solid var(--border);color:var(--fg);padding:12px 24px;border-radius:12px;font-size:.85rem;font-weight:600;z-index:200;pointer-events:none;opacity:0;transition:all .4s cubic-bezier(.16,1,.3,1);display:flex;align-items:center;gap:8px}
+.toast.sh{opacity:1;transform:translateX(-50%) translateY(0)}
+.sp{position:fixed;top:3px;left:0;height:2px;background:var(--gb);z-index:199;width:0}
+@media(max-width:1024px){.fg{grid-template-columns:repeat(2,1fr)}.cg{grid-template-columns:1fr}.tb{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.nk{display:none}.mt{display:block}.sg{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.fg{grid-template-columns:1fr}.sg{padding:20px}.sv{font-size:1.5rem}section{padding:70px 16px}.tb{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="fs"><span class="fg"></span><span class="fw"></span><span class="fr"></span></div>
+<div class="bg-g"></div><div class="bl a"></div><div class="bl b"></div>
+<canvas id="pt"></canvas>
+<div class="sp" id="sp"></div>
+
+<nav id="nav">
+<div class="ni">
+<a href="#" class="nl"><div class="lb"><div class="g"></div><div class="w"></div><div class="r"></div><span class="t">DZ</span></div>NSP-SIG-MCLDZ</a>
+<ul class="nk">
+<li><a href="#features">Fonctionnalites</a></li>
+<li><a href="#arch">Code</a></li>
+<li><a href="#tests">Tests</a></li>
+<li><a href="#cib">CIB</a></li>
+<li><a href="#nsp">NSP</a></li>
+<li><a href="#road">Roadmap</a></li>
+</ul>
+<div style="display:flex;align-items:center;gap:12px">
+<a href="https://github.com/milyes/MCL_MILYES" target="_blank" rel="noopener" class="nc"><i class="fab fa-github"></i> GitHub</a>
+</div>
+</div>
+</nav>
+
+<header class="hero">
+<div class="hc">
+<div class="hf"><span class="hg"></span><span class="hw"></span><span class="hr"></span></div>
+<div class="hb"><span class="pd"></span>v0.2.0-alpha — 100% stdlib</div>
+<h1><span class="gr">Forge de Startups</span><br><span class="rd">Souveraine</span> Algerienne</h1>
+<p class="hs">De l'idee au site operationnel en quelques secondes. Zero dependance, zero appel reseau etranger, 100% Python stdlib. Conforme NSP.</p>
+<div class="hb2">
+<a href="https://github.com/milyes/MCL_MILYES" target="_blank" rel="noopener" class="bp"><i class="fas fa-rocket"></i> Voir le code</a>
+<a href="#arch" class="bs"><i class="fas fa-code"></i> Architecture</a>
+</div>
+</div>
+</header>
+
+<div class="sb">
+<div class="sg" id="sg">
+<div class="st"><div class="sv" data-target="10">0</div><div class="sl">Modules</div></div>
+<div class="st"><div class="sv" data-target="48">0</div><div class="sl">Tests passants</div></div>
+<div class="st"><div class="sv" data-target="100" data-suffix="%">0</div><div class="sl">Stdlib</div></div>
+<div class="st"><div class="sv" data-target="0">0</div><div class="sl">Dependances pip</div></div>
+</div>
+</div>
+
+<section id="features">
+<div class="stag"><i class="fas fa-bolt"></i> Fonctionnalites</div>
+<h2 class="sti">Ce que le code fait reellement</h2>
+<p class="sd">Pas de marketing. Fonctionnalites verifiables dans le depot.</p>
+<div class="fg" id="fg">
+<div class="fc"><div class="fi g"><i class="fas fa-brain"></i></div><h3>Detection de categorie</h3><p>Mots-cles avec frontieres re.boundary : food, tech, service, ecom, immobilier.</p></div>
+<div class="fc"><div class="fi r"><i class="fas fa-shield-halved"></i></div><h3>Sanitisation des inputs</h3><p>Echappement HTML, limite 500 caracteres, validation numeros algeriens 05xx/06xx/07xx.</p></div>
+<div class="fc"><div class="fi w"><i class="fas fa-palette"></i></div><h3>Logo SVG local</h3><p>Generation SVG avec gradient et initiales. Zero appel reseau, zero service etranger.</p></div>
+<div class="fc"><div class="fi g"><i class="fas fa-server"></i></div><h3>Serveur leads asyncio</h3><p>HTTP sur 127.0.0.1:8080. POST /save-lead, GET /leads. Capture reelle des prospects.</p></div>
+<div class="fc"><div class="fi r"><i class="fas fa-robot"></i></div><h3>Ollama fallback</h3><p>Generation via Ollama local (localhost:11434). Si indisponible, template souverain automatique.</p></div>
+<div class="fc"><div class="fi w"><i class="fas fa-credit-card"></i></div><h3>Formulaire CIB/Edahabia</h3><p>Premier jet : formulaire HTML avec validation, selection CIB/Edahabia, pret a connecter.</p></div>
+</div>
+</section>
+
+<section id="arch">
+<div class="stag"><i class="fas fa-sitemap"></i> Architecture reelle</div>
+<h2 class="sti">10 modules, 1 CLI</h2>
+<p class="sd">Structure exacte du depot. Chaque fichier a une responsabilite unique.</p>
+<div class="tree">
+<span class="d">MCL_MILYES/</span>
+├── <span class="py">AI_AUTO.py</span>              <span class="cm"># CLI mince (40 lignes)</span>
+├── <span class="md">CHANGELOG.md</span>            <span class="cm"># Historique des versions</span>
+├── <span class="md">SECURITY.md</span>             <span class="cm"># Modele de menaces</span>
+├── <span class="md">README.MD</span>               <span class="cm"># Description du projet</span>
+├── <span class="d">src/mcldz/</span>
+│   ├── <span class="py">__init__.py</span>          <span class="cm"># version, product, certification</span>
+│   ├── <span class="py">config.py</span>           <span class="cm"># Constantes centralisees</span>
+│   ├── <span class="py">colors.py</span>           <span class="cm"># Couleurs terminal</span>
+│   ├── <span class="py">ideas.py</span>            <span class="cm"># 20 idees + 5 categories</span>
+│   ├── <span class="py">security.py</span>         <span class="cm"># sanitize, validate_phone</span>
+│   ├── <span class="py">analyzer.py</span>         <span class="cm"># detect_category, keywords</span>
+│   ├── <span class="py">generator.py</span>        <span class="cm"># HTML : ollama + template</span>
+│   ├── <span class="py">logo.py</span>             <span class="cm"># SVG generator</span>
+│   ├── <span class="py">logger.py</span>           <span class="cm"># logs + leads JSON</span>
+│   ├── <span class="py">server.py</span>           <span class="cm"># asyncio HTTP server</span>
+│   ├── <span class="py">forge.py</span>            <span class="cm"># Orchestrateur principal</span>
+│   └── <span class="py">cib.py</span>              <span class="cm"># Formulaire CIB/Edahabia</span>
+├── <span class="d">tests/</span>
+│   ├── <span class="ts">test_security.py</span>   <span class="cm"># 11 tests</span>
+│   ├── <span class="ts">test_analyzer.py</span>   <span class="cm"># 10 tests</span>
+│   ├── <span class="ts">test_generator.py</span>  <span class="cm"># 10 tests</span>
+│   ├── <span class="ts">test_logger.py</span>     <span class="cm"># 5 tests</span>
+│   ├── <span class="ts">test_logo.py</span>       <span class="cm"># 5 tests</span>
+│   └── <span class="ts">test_cib.py</span>        <span class="cm"># 7 tests</span>
+└── <span class="d">docs/</span>
+    ├── <span class="md">architecture.md</span>     <span class="cm"># Schema systeme</span>
+    └── <span class="md">data-formats.md</span>    <span class="cm"># Specs JSON</span>
+</div>
+</section>
+
+<section id="tests">
+<div class="stag"><i class="fas fa-flask"></i> Tests</div>
+<h2 class="sti">48/48 passants</h2>
+<p class="sd">Six fichiers couvrant securite, analyse, generation, logging, logo et CIB.</p>
+<div class="tb" id="tb">
+<div class="tc"><div class="tv">11</div><div class="tl">Security</div><div class="tx">sanitize, XSS, phone</div></div>
+<div class="tc"><div class="tv">10</div><div class="tl">Analyzer</div><div class="tx">categories, keywords</div></div>
+<div class="tc"><div class="tv">10</div><div class="tl">Generator</div><div class="tx">HTML, fallback, XSS</div></div>
+<div class="tc"><div class="tv">5</div><div class="tl">Logger</div><div class="tx">logs, leads, errors</div></div>
+<div class="tc"><div class="tv">5</div><div class="tl">Logo</div><div class="tx">SVG, initials, gradient</div></div>
+<div class="tc"><div class="tv">7</div><div class="tl">CIB</div><div class="tx">form, amount, methods</div></div>
+</div>
+</section>
+
+<section id="cib">
+<div class="stag"><i class="fas fa-credit-card"></i> CIB / Edahabia</div>
+<h2 class="sti">Formulaire de paiement</h2>
+<p class="sd">Premier jet du module cib.py — non connecte a l'API bancaire.</p>
+<div class="cibd">
+<div class="cibc">
+<div class="cibo c1 ac" id="co">CIB</div>
+<div class="cibo c2" id="eo">Edahabia</div>
+</div>
+<div class="cibf">
+<input type="text" class="cibi" placeholder="Numero de carte" maxlength="19">
+<div class="cibr">
+<input type="text" class="cibi" placeholder="MM/AA" maxlength="5">
+<input type="text" class="cibi" placeholder="CVV" maxlength="3">
+</div>
+<input type="text" class="cibi" placeholder="Nom sur la carte">
+<div style="display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid var(--border);margin-top:4px">
+<span style="color:var(--f2);font-weight:600">Total</span>
+<span style="color:var(--gb);font-weight:800;font-size:1.1rem">5 000 DZD</span>
+</div>
+<button class="cibb" id="pb">Payer 5 000 DZD</button>
+<p class="cibn">Demo — non connecte a l'API bancaire (v0.3.0-alpha)</p>
+</div>
+</div>
+</section>
+
+<section id="nsp">
+<div class="stag"><i class="fas fa-certificate"></i> Conformite NSP</div>
+<h2 class="sti">Audit de souverainete</h2>
+<p class="sd">Chaque critere verifiable dans le code source.</p>
+<div class="cg">
+<div class="cc">
+<h3 style="font-size:.95rem;font-weight:700;margin-bottom:16px;color:var(--gb)">Securite</h3>
+<div class="cr"><span class="cl">Zero execution code distant</span><span class="cs ok">CONFORME</span></div>
+<div class="cr"><span class="cl">Sanitisation inputs</span><span class="cs ok">CONFORME</span></div>
+<div class="cr"><span class="cl">Validation telephone</span><span class="cs ok">CONFORME</span></div>
+<div class="cr"><span class="cl">Leads hors git</span><span class="cs ok">CONFORME</span></div>
+</div>
+<div class="cc">
+<h3 style="font-size:.95rem;font-weight:700;margin-bottom:16px;color:var(--gb)">Souverainete</h3>
+<div class="cr"><span class="cl">Zero dependance pip</span><span class="cs ok">CONFORME</span></div>
+<div class="cr"><span class="cl">Zero appel reseau etranger</span><span class="cs ok">CONFORME</span></div>
+<div class="cr"><span class="cl">100% stdlib Python</span><span class="cs ok">CONFORME</span></div>
+<div class="cr"><span class="cl">Ollama localhost only</span><span class="cs ok">CONFORME</span></div>
+</div>
+<div class="cc">
+<h3 style="font-size:.95rem;font-weight:700;margin-bottom:16px;color:var(--gold)">En cours</h3>
+<div class="cr"><span class="cl">Integration CIB reelle</span><span class="cs pa">FORMULAIRE</span></div>
+<div class="cr"><span class="cl">Documentation technique</span><span class="cs pa">PARTIELLE</span></div>
+<div class="cr"><span class="cl">Couverture tests > 80%</span><span class="cs pa">48 TESTS</span></div>
+<div class="cr"><span class="cl">Multi-utilisateurs</span><span class="cs pa">PREVU v0.5</span></div>
+</div>
+<div class="cc">
+<h3 style="font-size:.95rem;font-weight:700;margin-bottom:16px;color:var(--r)">Non conforme (ancien)</h3>
+<div class="cr"><span class="cl">IA_AUTO_UPDATE.py</span><span class="cs no">SUPPRIME</span></div>
+<div class="cr"><span class="cl">Pollinations.ai</span><span class="cs no">SUPPRIME</span></div>
+<div class="cr"><span class="cl">"API CIB connectee" faux</span><span class="cs no">CORRIGE</span></div>
+<div class="cr"><span class="cl">leads.json dans git</span><span class="cs no">EXCLU</span></div>
+</div>
+</div>
+</section>
+
+<section id="road">
+<div class="stag"><i class="fas fa-road"></i> Roadmap</div>
+<h2 class="sti">De l'alpha a la certification</h2>
+<p class="sd">Chaque version a un commit verifiable sur GitHub.</p>
+<div class="tl">
+<div class="ti"><span class="tt dn">DONE</span><h3>v0.1.0-alpha — Refactorisation</h3><p>Suppression fichiers non conformes. Logo SVG local. Sanitisation. .gitignore. Docs initiales.</p></div>
+<div class="ti"><span class="tt dn">DONE</span><h3>v0.2.0-alpha — Modules + Tests</h3><p>10 modules. 48 tests. Formulaire CIB. Mots-cles avec frontieres re.boundary.</p></div>
+<div class="ti"><span class="tt nx">NEXT</span><h3>v0.3.0-alpha — CIB reel</h3><p>Connexion API bancaire partenaire. Chiffrement leads. HTTPS. Rate limiting.</p></div>
+<div class="ti"><span class="tt lt">PLANNED</span><h3>v0.5.0-beta — Multi-utilisateurs</h3><p>Authentification. Dashboard. Quotas. Historique complet.</p></div>
+<div class="ti"><span class="tt lt">CIBLE</span><h3>v1.0.0 — Certification NSP</h3><p>Audit securite externe. Couverture > 80%. Docs completes. Certification PNS.</p></div>
+</div>
+</section>
+
+<footer>
+<div class="fi2">
+<div class="fc2">NSP-SIG-MCLDZ v0.2.0-alpha — <strong style="color:var(--fg)">Produit National Souverain</strong></div>
+<div class="fl"><a href="https://github.com/milyes/MCL_MILYES" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a></div>
+</div>
+</footer>
+
+<div class="toast" id="toast"><span style="color:var(--gb)"><i class="fas fa-info-circle"></i></span><span id="tm"></span></div>
+
+<script>
+(function(){const c=document.getElementById('pt'),x=c.getContext('2d');let p=[],mx=-999,my=-999;function rs(){c.width=innerWidth;c.height=innerHeight}rs();addEventListener('resize',rs);document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});class P{constructor(){this.x=Math.random()*c.width;this.y=Math.random()*c.height;this.r=Math.random()*1.4+.4;this.vx=(Math.random()-.5)*.26;this.vy=(Math.random()-.5)*.26;this.o=Math.random()*.22+.06}u(){this.x+=this.vx;this.y+=this.vy;const dx=this.x-mx,dy=this.y-my,d=Math.sqrt(dx*dx+dy*dy);if(d<130){const f=(130-d)/130*.5;this.x+=dx/d*f;this.y+=dy/d*f}if(this.x<0||this.x>c.width)this.vx*=-1;if(this.y<0||this.y>c.height)this.vy*=-1}d(){x.beginPath();x.arc(this.x,this.y,Math.max(.1,this.r),0,Math.PI*2);x.fillStyle='rgba(0,204,85,'+this.o+')';x.fill()}}for(let i=0;i<65;i++)p.push(new P());function ln(){for(let i=0;i<p.length;i++)for(let j=i+1;j<p.length;j++){const dx=p[i].x-p[j].x,dy=p[i].y-p[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<100){x.beginPath();x.moveTo(p[i].x,p[i].y);x.lineTo(p[j].x,p[j].y);x.strokeStyle='rgba(0,204,85,'+(1-d/100)*.06+')';x.lineWidth=.5;x.stroke()}}}(function lp(){x.clearRect(0,0,c.width,c.height);p.forEach(q=>{q.u();q.d()});ln();requestAnimationFrame(lp)})()})();
+addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('sp').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%';document.getElementById('nav').classList.toggle('sc',scrollY>50)});
+const so=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('[data-target]').forEach(v=>{const t=+v.dataset.target,s=v.dataset.suffix||'';let c=0;const st=Math.max(1,Math.ceil(t/35));const iv=setInterval(()=>{c+=st;if(c>=t){c=t;clearInterval(iv)}v.textContent=c+s},40)});so.unobserve(e.target)}})},{threshold:.4});
+so.observe(document.getElementById('sg'));
+const ro=new IntersectionObserver(es=>{es.forEach((e,i)=>{if(e.isIntersecting){e.target.style.transitionDelay=i*.06+'s';e.target.classList.add('sh');ro.unobserve(e.target)}})},{threshold:.08});
+document.querySelectorAll('.fc,.tc,.ti').forEach(c=>ro.observe(c));
+document.getElementById('co').addEventListener('click',()=>{document.getElementById('co').classList.add('ac');document.getElementById('eo').classList.remove('ac')});
+document.getElementById('eo').addEventListener('click',()=>{document.getElementById('eo').classList.add('ac');document.getElementById('co').classList.remove('ac')});
+document.getElementById('pb').addEventListener('click',function(){this.textContent='Connexion bancaire non configuree.';this.style.background='rgba(210,16,52,.15)';this.style.color='#D21034';this.disabled=true});
+</script>
+</body>
+</html>
