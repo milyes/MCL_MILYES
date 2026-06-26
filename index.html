@@ -197,6 +197,26 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:48
 .tlm-item{padding:12px 0 12px 16px;border-left:2px solid var(--border);margin-left:-1px}
 .tlm-date{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--gb);font-weight:600}
 .tlm-info{font-size:.82rem;color:var(--f2)}
+
+.sg2{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;transition:all .4s;opacity:0;transform:translateY(16px);cursor:default;position:relative;overflow:hidden}
+.sc.sh{opacity:1;transform:translateY(0)}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gb);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.sc:hover::before{transform:scaleX(1)}
+.sc:hover{border-color:rgba(0,204,85,.25);transform:translateY(-3px)!important;box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.sc-tag{display:inline-block;padding:2px 8px;border-radius:5px;font-size:.65rem;font-weight:700;margin-bottom:10px}
+.sc-tag.food{background:rgba(0,204,85,.12);color:var(--gb)}
+.sc-tag.tech{background:rgba(110,200,240,.12);color:#6ec8f0}
+.sc-tag.service{background:rgba(212,160,48,.12);color:var(--gold)}
+.sc-tag.ecom{background:rgba(240,160,128,.12);color:#f0a080}
+.sc-name{font-size:.92rem;font-weight:700;margin-bottom:6px;line-height:1.3}
+.sc-id{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--muted);margin-bottom:4px}
+.sc-date{font-size:.72rem;color:var(--muted)}
+.sc-filters{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.sc-btn{padding:6px 16px;border-radius:8px;border:1px solid var(--border2);background:transparent;color:var(--muted);font-family:inherit;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s}
+.sc-btn:hover{border-color:var(--gb);color:var(--gb)}
+.sc-btn.active{background:var(--gd);color:var(--gb);border-color:rgba(0,204,85,.3)}
+.sc.hidden{display:none!important}
 </style>
 </head>
 <body>
@@ -219,6 +239,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:48
 <li><a href="#sites">Sites</a></li>
 <li><a href="#analytics">Analytics</a></li>
 <li><a href="#analytics">Analytics</a></li>
+<li><a href="#sites">Sites</a></li>
 <li><a href="#sites">Sites</a></li>
 <li><a href="#road">Roadmap</a></li>
 </ul>
@@ -821,6 +842,106 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:48
 <button class="sc-btn" data-filter="ecom">E-com</button>
 </div>
 </div>
+</section>
+<section id="sites">
+<div class="stag"><i class="fas fa-globe"></i> Sites generes</div>
+<h2 class="sti">16 projets crees par la forge</h2>
+<p class="sd">Chaque site est genere en quelques secondes. Voici les 16 projets reels du journal MCL_MILYES.</p>
+<div class="sg2" id="sites-grid">
+<div class="sc" data-cat="food">
+<div class="sc-tag food">food</div>
+<div class="sc-name">Livraison repas algeriens</div>
+<div class="sc-id">PROJ_20260618_221122</div>
+<div class="sc-date">18 Juin 2026</div>
+</div>
+<div class="sc" data-cat="service">
+<div class="sc-tag service">service</div>
+<div class="sc-name">Agence marketing digital DZ</div>
+<div class="sc-id">PROJ_20260618_2215</div>
+<div class="sc-date">18 Juin 2026</div>
+</div>
+<div class="sc" data-cat="service">
+<div class="sc-tag service">service</div>
+<div class="sc-name">Agence marketing digital DZ</div>
+<div class="sc-id">PROJ_20260618_2217</div>
+<div class="sc-date">18 Juin 2026</div>
+</div>
+<div class="sc" data-cat="food">
+<div class="sc-tag food">food</div>
+<div class="sc-name">Livraison repas Alger</div>
+<div class="sc-id">PROJ_20260619_0649</div>
+<div class="sc-date">19 Juin 2026</div>
+</div>
+<div class="sc" data-cat="ecom">
+<div class="sc-tag ecom">ecom</div>
+<div class="sc-name">Vetements traditionnels</div>
+<div class="sc-id">PROJ_20260619_0651</div>
+<div class="sc-date">19 Juin 2026</div>
+</div>
+<div class="sc" data-cat="ecom">
+<div class="sc-tag ecom">ecom</div>
+<div class="sc-name">Vetements traditionnels DZ</div>
+<div class="sc-id">PROJ_20260619_0655</div>
+<div class="sc-date">19 Juin 2026</div>
+</div>
+<div class="sc" data-cat="tech">
+<div class="sc-tag tech">tech</div>
+<div class="sc-name">IA Ollama</div>
+<div class="sc-id">PROJ_20260622_0734</div>
+<div class="sc-date">22 Juin 2026</div>
+</div>
+<div class="sc" data-cat="food">
+<div class="sc-tag food">food</div>
+<div class="sc-name">Cuisin</div>
+<div class="sc-id">PROJ_20260622_1155</div>
+<div class="sc-date">22 Juin 2026</div>
+</div>
+<div class="sc" data-cat="food">
+<div class="sc-tag food">food</div>
+<div class="sc-name">Pizzas halal Alger</div>
+<div class="sc-id">PROJ_20260622_1246</div>
+<div class="sc-date">22 Juin 2026</div>
+</div>
+<div class="sc" data-cat="service">
+<div class="sc-tag service">service</div>
+<div class="sc-name">Agence marketing digital DZ</div>
+<div class="sc-id">PROJ_20260622_1311</div>
+<div class="sc-date">22 Juin 2026</div>
+</div>
+<div class="sc" data-cat="service">
+<div class="sc-tag service">service</div>
+<div class="sc-name">Agence marketing digital DZ</div>
+<div class="sc-id">PROJ_20260622_1342</div>
+<div class="sc-date">22 Juin 2026</div>
+</div>
+<div class="sc" data-cat="service">
+<div class="sc-tag service">service</div>
+<div class="sc-name">Agence marketing digital DZ</div>
+<div class="sc-id">PROJ_20260622_1348</div>
+<div class="sc-date">22 Juin 2026</div>
+</div>
+<div class="sc" data-cat="tech">
+<div class="sc-tag tech">tech</div>
+<div class="sc-name">IA traducteur Darija</div>
+<div class="sc-id">PROJ_20260622_1713</div>
+<div class="sc-date">22 Juin 2026</div>
+</div>
+<div class="sc" data-cat="ecom">
+<div class="sc-tag ecom">ecom</div>
+<div class="sc-name">Goodies et imprimes</div>
+<div class="sc-id">PROJ_20260622_1753</div>
+<div class="sc-date">22 Juin 2026</div>
+</div>
+</div>
+<div style="text-align:center;margin-top:24px">
+<div class="sc-filters" id="sc-filters">
+<button class="sc-btn active" data-filter="all">Tous</button>
+<button class="sc-btn" data-filter="food">Food</button>
+<button class="sc-btn" data-filter="tech">Tech</button>
+<button class="sc-btn" data-filter="service">Service</button>
+<button class="sc-btn" data-filter="ecom">E-com</button>
+</div>
+</div>
 </section><footer>
 <div class="fi2">
 <div class="fc2">NSP-SIG-MCLDZ v0.3.0-alpha — <strong style="color:var(--fg)">Produit National Souverain</strong></div>
@@ -873,5 +994,17 @@ r.observe(el)});
 var ab=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.querySelectorAll(".ag-bar").forEach(function(b){b.style.width=b.dataset.w+"%"});ab.unobserve(e.target)}})},{threshold:.3});
 document.querySelectorAll(".ag-card,.tlm-item,.ag-insight").forEach(function(el,i){var r=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.style.transitionDelay=i*.1+"s";e.target.classList.add("sh");r.unobserve(e.target)}})},{threshold:.1});
 r.observe(el)});
+</script><script>
+document.querySelectorAll(".sc-btn").forEach(function(b){
+b.addEventListener("click",function(){
+document.querySelectorAll(".sc-btn").forEach(function(x){x.classList.remove("active")});
+b.classList.add("active");
+var f=b.dataset.filter;
+document.querySelectorAll(".sc").forEach(function(c){
+if(f==="all"||c.dataset.cat===f){c.classList.remove("hidden");c.classList.add("sh")}
+else{c.classList.add("hidden");c.classList.remove("sh")}
+});
+});
+});
 </script></body>
 </html>
