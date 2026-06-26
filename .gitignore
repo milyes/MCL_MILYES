@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+*.log
+*.bak
+*.tmp_update
+leads.json
+projects/*/leads.json
+.env
+*.egg-info/
+dist/
+build/
+*.old
+setup.py
+mcl_milyes_logs.json
